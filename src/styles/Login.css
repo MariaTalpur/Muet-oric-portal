@@ -1,0 +1,139 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.login-container {
+  min-height: 100vh;
+  width: 100%;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 20px;
+}
+
+.login-card {
+  width: 450px;
+  padding: 35px;
+
+  background: rgba(255, 255, 255, 0.12);
+
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  border-radius: 20px;
+
+  color: white;
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.logo-section {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.oric-logo {
+  width: 90px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.logo-section h1 {
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.logo-section p {
+  font-size: 14px;
+  color: #dbeafe;
+}
+
+.tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.tabs button {
+  flex: 1;
+  padding: 12px;
+
+  border: none;
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+
+  font-weight: 600;
+}
+
+.tabs .active {
+  background: #0ea5e9;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 15px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+}
+
+input::placeholder {
+  color: #d1d5db;
+}
+
+select option {
+  color: black;
+}
+
+.main-btn {
+  width: 100%;
+  padding: 14px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: #0ea5e9;
+  color: white;
+
+  font-size: 16px;
+  font-weight: 600;
+
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.main-btn:hover {
+  background: #0284c7;
+}
+
+.info-text {
+  margin-top: 15px;
+  text-align: center;
+  font-size: 13px;
+  color: #dbeafe;
+}
