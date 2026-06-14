@@ -5,36 +5,69 @@
   font-family: "Segoe UI", sans-serif;
 }
 
-.login-container {
-  min-height: 100vh;
+/* body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  position: relative;
+  font-family: "Segoe UI", sans-serif;
+} */
+ html, body, #root {
+  height: 100%;
   width: 100%;
+  margin: 0;
+  padding: 0;
+}
 
+/* background image layer */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../assets/oric-bg.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  z-index: -2;
+}
 
+/* BLUE OVERLAY */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 32, 96, 0.4);
+  /* your blue overlay */
+  z-index: -1;
+}
+
+.login-container {
+  min-height: 100vh;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   display: flex;
   justify-content: center;
   align-items: center;
-
   padding: 20px;
 }
 
 .login-card {
   width: 450px;
   padding: 35px;
-
-  background: rgba(255, 255, 255, 0.12);
-
+  background: rgba(0, 32, 96, 0.4);
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
-
   border: 1px solid rgba(255, 255, 255, 0.2);
-
   border-radius: 20px;
-
   color: white;
-
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
@@ -68,15 +101,11 @@
 .tabs button {
   flex: 1;
   padding: 12px;
-
   border: none;
   border-radius: 10px;
-
   cursor: pointer;
-
   background: rgba(255, 255, 255, 0.15);
   color: white;
-
   font-weight: 600;
 }
 
@@ -94,10 +123,8 @@ select {
   width: 100%;
   padding: 14px;
   margin-bottom: 15px;
-
   border: none;
   border-radius: 10px;
-
   background: rgba(255, 255, 255, 0.15);
   color: white;
 }
@@ -113,16 +140,12 @@ select option {
 .main-btn {
   width: 100%;
   padding: 14px;
-
   border: none;
   border-radius: 10px;
-
   background: #0ea5e9;
   color: white;
-
   font-size: 16px;
   font-weight: 600;
-
   cursor: pointer;
   transition: 0.3s;
 }
@@ -136,4 +159,41 @@ select option {
   text-align: center;
   font-size: 13px;
   color: #dbeafe;
+}
+
+.message-box {
+  margin-bottom: 12px;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.message-box.success {
+  background: rgba(0, 255, 0, 0.15);
+  color: #00d26a;
+  border: 1px solid #00d26a;
+}
+
+.message-box.error {
+  background: rgba(255, 0, 0, 0.15);
+  color: #ff4d4d;
+  border: 1px solid #ff4d4d;
+}
+
+.continue-btn {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 10px;
+  background: #00c853;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.continue-btn:hover {
+  background: #00a844;
 }

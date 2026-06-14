@@ -14,6 +14,11 @@ function Login({ onLogin }) {
     role: "student"
   });
 
+  // ✅ message + continue control
+  const [message, setMessage] = useState("");
+  const [messageType, setMessageType] = useState("");
+  const [showContinue, setShowContinue] = useState(false);
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -21,7 +26,7 @@ function Login({ onLogin }) {
     });
   };
 
-  // 🔐 LOGIN USER
+  // 🔐 LOGIN
   const handleExistingLogin = async (e) => {
     e.preventDefault();
 
@@ -31,19 +36,18 @@ function Login({ onLogin }) {
         password: formData.password
       });
 
-      alert("Login Successful as " + res.data.role);
-
-      // ✅ IMPORTANT: go to dashboard
-      if (onLogin) {
-        onLogin();
-      }
+      setMessage("Login Successful as " + res.data.role);
+      setMessageType("success");
+      setShowContinue(true);
 
     } catch (err) {
-      alert(err.response?.data?.message || "Login Error");
+      setMessage(err.response?.data?.message || "Login Error");
+      setMessageType("error");
+      setShowContinue(false);
     }
   };
 
-  // 🆕 REGISTER USER
+  // 🆕 REGISTER
   const handleGeneratePassword = async (e) => {
     e.preventDefault();
 
@@ -53,18 +57,27 @@ function Login({ onLogin }) {
         role: formData.role
       });
 
-      alert(
-        "User Created!\nTemporary Password: " +
+      setMessage(
+        "User Created! Password: " +
         res.data.generatedPassword
       );
 
-      // optional: auto login after register
-      if (onLogin) {
-        onLogin();
-      }
+      setMessageType("success");
+
+      // 🔥 show continue button
+      setShowContinue(true);
 
     } catch (err) {
-      alert(err.response?.data?.message || "Register Error");
+      setMessage(err.response?.data?.message || "Register Error");
+      setMessageType("error");
+      setShowContinue(false);
+    }
+  };
+
+  // 🚀 CONTINUE BUTTON CLICK
+  const handleContinue = () => {
+    if (onLogin) {
+      onLogin(); // dashboard open
     }
   };
 
@@ -72,14 +85,22 @@ function Login({ onLogin }) {
     <div
       className="login-container"
       style={{
-        backgroundImage: `
-          linear-gradient(
-            rgba(5, 35, 85, 0.80),
-            rgba(5, 35, 85, 0.85)
-          ),
-          url(${bgImage})
-        `
-      }}
+  backgroundImage: `
+    linear-gradient(rgba(5,35,85,0.6), rgba(5,35,85,0.6)),
+    url(${bgImage})
+  `,
+  backgroundSize: "cover",
+  backgroundPosition: "center",
+  backgroundRepeat: "no-repeat",
+  minHeight: "100vh",
+  width: "100%"
+}}
+      // style={{
+      //   backgroundImage: `
+      //     linear-gradient(rgba(5,35,85,0.85), rgba(5,35,85,0.85)),
+      //     url(${bgImage})
+      //   `
+      // }}
     >
       <div className="login-card">
 
@@ -89,6 +110,23 @@ function Login({ onLogin }) {
           <h1>MUET ORIC Portal</h1>
           <p>Office of Research, Innovation & Commercialization</p>
         </div>
+
+        {/* MESSAGE BOX */}
+        {message && (
+          <div className={`message-box ${messageType}`}>
+            {message}
+          </div>
+        )}
+
+        {/* ✅ CONTINUE BUTTON */}
+        {showContinue && (
+          <button
+            className="continue-btn"
+            onClick={handleContinue}
+          >
+            Continue to Dashboard →
+          </button>
+        )}
 
         {/* TABS */}
         <div className="tabs">
@@ -107,7 +145,7 @@ function Login({ onLogin }) {
           </button>
         </div>
 
-        {/* LOGIN FORM */}
+        {/* LOGIN */}
         {activeTab === "existing" ? (
           <form onSubmit={handleExistingLogin}>
             <h2>Login</h2>
@@ -133,7 +171,7 @@ function Login({ onLogin }) {
             </button>
           </form>
         ) : (
-          /* REGISTER FORM */
+          /* REGISTER */
           <form onSubmit={handleGeneratePassword}>
             <h2>New Registration</h2>
 
@@ -159,7 +197,7 @@ function Login({ onLogin }) {
             </button>
 
             <p className="info-text">
-              A temporary password will be sent to your university email.
+              Temporary password will appear here
             </p>
           </form>
         )}
@@ -169,3 +207,4 @@ function Login({ onLogin }) {
 }
 
 export default Login;
+
